@@ -12,9 +12,12 @@ import Foundation
 // Implementation - you can move it later to `Sources/FrequencyDistribution.swift`
 
 public func frequencyDistributionAnalyse(text: String) -> [String: Int] {
-      // 🤔
       // return a dictionary with alphabet letters as keys and the count of their appearance in the text as a value
-    return [:]
+    return text.reduce(into: [String: Int]()) { (result, char) in
+        print(result)
+        let s = String(char)
+        result[s, default: 0] += 1
+    }
 }
 
 // Test Data
@@ -46,7 +49,12 @@ let cipherAnalyse = frequencyDistributionAnalyse(text: cipherText)
 public func prepareDataSetForFrequencyDistribution(from analyse: [String: Int]) -> [(key: String, value: Int)] {
     // 🤔
     // return an array of tuples (think about sorting them so both graphs are feed with letters in the same order, i.e.
-    return [(key: "a", value: 10), (key: "b", value: 2), (key: "c", value: 20)]
+    var result = [(key: String, value: Int)]()
+    analyse.forEach { item in
+        result.append((key: item.key, value: item.value))
+    }
+
+    return result
 }
 
 let englishAnalyseDataset = prepareDataSetForFrequencyDistribution(from: englishAnalyse)
@@ -55,6 +63,7 @@ Graph(dataSet: englishAnalyseDataset).draw()
 let cipherAnalyseDataset = prepareDataSetForFrequencyDistribution(from: cipherAnalyse)
 Graph(dataSet: cipherAnalyseDataset).draw()
 
+
 // The offset is: 
-// print(cipher(cipherText, offset: ))
+ print(cipher(cipherText, offset: -7))
 
