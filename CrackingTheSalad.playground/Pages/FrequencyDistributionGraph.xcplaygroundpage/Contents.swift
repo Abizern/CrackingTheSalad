@@ -14,7 +14,6 @@ import Foundation
 public func frequencyDistributionAnalyse(text: String) -> [String: Int] {
       // return a dictionary with alphabet letters as keys and the count of their appearance in the text as a value
     return text.reduce(into: [String: Int]()) { (result, char) in
-        print(result)
         let s = String(char)
         result[s, default: 0] += 1
     }
